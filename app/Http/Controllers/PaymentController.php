@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function processPayment()
+    public function checkout()
     {
 
         try {
@@ -18,7 +18,6 @@ class PaymentController extends Controller
             ];
 
             $invoice_no = rand(11111111, 99999999);
-            $redirect_url = url('/');
 
             $pay = new Paystation($config);
             $pay->setPaymentParams([
@@ -30,19 +29,41 @@ class PaymentController extends Controller
                 'cust_phone' => "01700000001",
                 'cust_email' => "nazmul@gmail.com",
                 'cust_address' => "Dhaka, Bangladesh",
-                'callback_url' => "{$redirect_url}",
+                'callback_url' => route('payment.verify'),
                 // 'checkout_items' => "orderItems"
             ]);
 
             $pay->payNow(); //will automatically redirect to gateway payment page
 
-            $status  = $pay->verifyPayment($invoice_no,"trx_id"); //this will retrieve response as json
-
-            dd($status);
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
+    }
+
+    public function verify(Request $request)
+    {
+        $config = [
+            'merchantId' => config('paystation.merchant_id'),
+            'password' => config('paystation.merchant_password')
+        ];
+
+        $pay = new Paystation($config);
+
+        if ($request->invoice_number != null && $request->trx_id != null) {
+            $status  = $pay->verifyPayment($request->invoice_number,$request->trx_id); //this will retrieve response as json
+            dd($status);
+            if ($status->status_code == 200) {
+                //store payment transaction
+            }else{
+                return redirect()->route('home');
+            }
+        }else{
+            return redirect()->route('home');
+        }
+
+
+
     }
 
 

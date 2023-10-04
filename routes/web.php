@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
-Route::get('payment-process',[PaymentController::class,'processPayment'])->name('payment.process');
+Route::get('checkout',[PaymentController::class,'checkout'])->name('checkout');
+Route::get('verify-payment',[PaymentController::class,'verify'])->name('payment.verify');

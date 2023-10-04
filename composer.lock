@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "dd034cdb4a700854bbc0f916bf17d17d",
     "packages": [
         {
             "name": "brick/math",
@@ -5624,6 +5624,68 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "xenon/paystation",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/arif98741/paystation-sdk.git",
+                "reference": "5cca2c566611cf4aade91fee03f954ee130d5dbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/arif98741/paystation-sdk/zipball/5cca2c566611cf4aade91fee03f954ee130d5dbc",
+                "reference": "5cca2c566611cf4aade91fee03f954ee130d5dbc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^6.3|^7.2",
+                "php": ">=7.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Xenon\\Paystation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ariful",
+                    "email": "arif98741@gmail.com"
+                }
+            ],
+            "description": "Paystation is a php library for Bangladeshi payment gateway provider. You can integrate this in your php application and get customer payment using mfs, credit card and so on",
+            "keywords": [
+                "Bangladeshi payment gateway",
+                "api",
+                "nagad",
+                "nagad payment gateway",
+                "nagad php library",
+                "nagad sdk",
+                "payment gateway",
+                "paystation",
+                "paystation gateway",
+                "paystation php sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/arif98741/paystation-sdk/issues",
+                "source": "https://github.com/arif98741/paystation-sdk/tree/1.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/arif98741",
+                    "type": "custom"
+                }
+            ],
+            "time": "2023-06-21T13:29:35+00:00"
         }
     ],
     "packages-dev": [

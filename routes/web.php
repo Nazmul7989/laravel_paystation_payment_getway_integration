@@ -10,4 +10,4 @@ Route::get('/', function () {
 });
 
 
-Route::post('payment-process',[PaymentController::class,'process'])->name('payment.process');
+Route::get('payment-process',[PaymentController::class,'processPayment'])->name('payment.process');

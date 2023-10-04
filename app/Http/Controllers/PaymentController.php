@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function checkout()
+    public function processPayment()
     {
 
         try {
@@ -30,7 +30,7 @@ class PaymentController extends Controller
                 'cust_email' => "nazmul@gmail.com",
                 'cust_address' => "Dhaka, Bangladesh",
                 'callback_url' => route('payment.verify'),
-                // 'checkout_items' => "orderItems"
+                 'checkout_items' => "orderItems"
             ]);
 
             $pay->payNow(); //will automatically redirect to gateway payment page
@@ -41,8 +41,13 @@ class PaymentController extends Controller
         }
     }
 
-    public function verify(Request $request)
+    public function verifyPayment(Request $request)
     {
+
+        if ($request->invoice_number == null && $request->trx_id == null) {
+            return redirect()->route('home')->with('error', 'Transaction Failed!');
+        }
+
         $config = [
             'merchantId' => config('paystation.merchant_id'),
             'password' => config('paystation.merchant_password')
@@ -50,19 +55,15 @@ class PaymentController extends Controller
 
         $pay = new Paystation($config);
 
-        if ($request->invoice_number != null && $request->trx_id != null) {
-            $status  = $pay->verifyPayment($request->invoice_number,$request->trx_id); //this will retrieve response as json
-            dd($status);
+        $responseData  = $pay->verifyPayment($request->invoice_number,$request->trx_id); //this will retrieve response as json
 
-            if ($status->status_code == 200) {
-                //store payment transaction
-            }else{
-                return redirect()->route('home');
-            }
+        $response = json_decode($responseData, true);
+
+        if ($response['status'] == 'success' && $response['status_code'] == 200) {
+            //store payment transaction
         }else{
-            return redirect()->route('home');
+            return redirect()->route('home')->with('error', 'Transaction Failed!');
         }
-
 
 
     }

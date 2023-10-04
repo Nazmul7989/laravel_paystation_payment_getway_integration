@@ -53,6 +53,7 @@ class PaymentController extends Controller
         if ($request->invoice_number != null && $request->trx_id != null) {
             $status  = $pay->verifyPayment($request->invoice_number,$request->trx_id); //this will retrieve response as json
             dd($status);
+
             if ($status->status_code == 200) {
                 //store payment transaction
             }else{

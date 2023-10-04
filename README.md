@@ -85,5 +85,4 @@ $status  = $pay->verifyPayment("invoice_number","trx_id"); //this will retrieve 
 * payNow()
 * verifyPayment()
 
-This library is still in beta version and if you are interested to contribute this , we highly encourage you. Make a fork of this repository
-and give send a pull request. If you face any issues or error during development or after deployment, you should crate an issue
+

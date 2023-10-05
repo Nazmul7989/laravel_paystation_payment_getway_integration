@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="mt-16">
-                    <form action="{{ route('checkout') }}" method="get">
+                    <form action="{{ route('payment.process') }}" method="get">
                         @csrf
                         <button style="padding: 10px 20px; margin: 10px; border: 1px solid black;">Pay Now</button>
                     </form>

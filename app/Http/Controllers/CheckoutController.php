@@ -41,7 +41,7 @@ class CheckoutController extends Controller
 
 
 
-    //Create Pyment Url
+    //Create Payment Url
     protected function createPayment($token_res, Request $request)
     {
         $token = $token_res['token'];

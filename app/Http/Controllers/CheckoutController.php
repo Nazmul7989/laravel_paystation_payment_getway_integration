@@ -118,6 +118,7 @@ class CheckoutController extends Controller
         }
 
         //Store Transaction Information and redirect to success page
+        echo 'store payment transaction';
         return redirect()->route('payment-success');
 
 

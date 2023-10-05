@@ -61,6 +61,7 @@ class PaymentController extends Controller
 
         if ($response['status'] == 'success' && $response['status_code'] == 200) {
             //store payment transaction
+            echo 'store payment transaction';
         }else{
             return redirect()->route('home')->with('error', 'Transaction Failed!');
         }

@@ -1,4 +1,4 @@
-xenon/paystation is a php library for Bangladeshi  payment gateway provider. You can integrate this in your php application and get customer payment using mfs, credit card and so on
+# Integrate by using xenon/paystation package
 
 
 ### Installation
@@ -6,7 +6,7 @@ xenon/paystation is a php library for Bangladeshi  payment gateway provider. You
 ```
 composer require xenon/paystation
 ```
-# Sample Code
+## Sample Code
 
 ### Update .env file
 ```
@@ -298,7 +298,7 @@ class CheckoutController extends Controller
 
 ```
 
-# Sample Response for these three steps
+# Sample Response for above three request
 
 ### Sample response for create token
 

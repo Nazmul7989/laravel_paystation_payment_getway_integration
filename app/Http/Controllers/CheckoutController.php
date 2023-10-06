@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
+    //Create Token
     public function checkout(Request $request)
     {
         // add checkout functionality
@@ -32,7 +33,7 @@ class CheckoutController extends Controller
 
         if ($token_res['status_code'] == 200 && $token_res['status'] == 'success') {
            $response =  $this->createPayment($token_res, $request);
-           return redirect()->away($response['payment_url']);
+           return redirect()->away($response['payment_url']); //Redirect to paystation payment page
         }else{
             return redirect()->route('home');
         }
@@ -81,10 +82,11 @@ class CheckoutController extends Controller
 
     }
 
+    //Verify transaction and store payment details
     public function storeTransaction(Request $request, $token)
     {
 
-        if ($request->invoice_number == null && $request->trx_id == null) {
+        if ( $request->trx_id == null) {
             //redirect to cart page or dashboard page
             return redirect()->route('home')->with('error', 'Order failed');
         }
@@ -119,7 +121,7 @@ class CheckoutController extends Controller
 
         //Store Transaction Information and redirect to success page
         echo 'store payment transaction';
-        return redirect()->route('payment-success');
+        return redirect()->route('home')->with('success','Order placed successfully');
 
 
     }

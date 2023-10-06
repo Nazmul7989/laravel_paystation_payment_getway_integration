@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Xenon\Paystation\Exception\PaystationPaymentParameterException;
 use Xenon\Paystation\Paystation;
 use Illuminate\Http\Request;
 
@@ -44,7 +43,7 @@ class PaymentController extends Controller
     public function verifyPayment(Request $request)
     {
 
-        if ($request->invoice_number == null && $request->trx_id == null) {
+        if ($request->trx_id == null) {
             return redirect()->route('home')->with('error', 'Transaction Failed!');
         }
 
@@ -60,8 +59,9 @@ class PaymentController extends Controller
         $response = json_decode($responseData, true);
 
         if ($response['status'] == 'success' && $response['status_code'] == 200) {
-            //store payment transaction
+            //store payment transaction and order information
             echo 'store payment transaction';
+            return redirect()->route('home')->with('success', 'Order Placed successfully');
         }else{
             return redirect()->route('home')->with('error', 'Transaction Failed!');
         }

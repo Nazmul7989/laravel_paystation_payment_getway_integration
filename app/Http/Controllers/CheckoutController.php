@@ -34,6 +34,8 @@ class CheckoutController extends Controller
         if ($token_res['status_code'] == 200 && $token_res['status'] == 'success') {
            $response =  $this->createPayment($token_res, $request);
            return redirect()->away($response['payment_url']); //Redirect to paystation payment page
+          //For Inertia Js, Use this to avoid whole tab opening as modal
+          // return inertia()->location($responseObject['payment_url']);
         }else{
             return redirect()->route('home');
         }
